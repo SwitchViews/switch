@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Simple interface to access PHP functions",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
@@ -14,5 +14,11 @@
   "bugs": {
     "url": "https://github.com/SwitchViews/switch/issues"
   },
-  "homepage": "https://github.com/SwitchViews/switch#readme"
+  "homepage": "https://github.com/SwitchViews/switch#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^4.14.1",
+    "tailwindcss": "^1.4.6"
+  }
 }
