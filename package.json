@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Simple interface to access PHP functions",
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp sass",
+    "gulp:watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,6 @@
   "dependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
-    "node-sass": "^4.14.1",
-    "tailwindcss": "^1.4.6"
+    "node-sass": "^4.14.1"
   }
 }
