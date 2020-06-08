@@ -3,22 +3,24 @@
 
 namespace App\Helpers;
 
+use DI\Container as DIContainer;
+
 class Container
 {
     /**
-     * @var null | \DI\Container
+     * @var null | DIContainer
      */
     private static $instance = null;
 
     /**
      * object is created only if the class instance is null
      *
-     * @return \DI\Container
+     * @return DIContainer
      */
-    public static function getInstance(): \DI\Container
+    public static function getInstance(): DIContainer
     {
         if (!self::$instance) {
-            self::$instance = new \DI\Container();
+            self::$instance = new DIContainer();
         }
 
         return self::$instance;
