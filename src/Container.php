@@ -5,9 +5,17 @@ namespace App\Helpers;
 
 use DI\Container as DIContainer;
 
+/**
+ * Singleton class
+ * Class Container is responsible for DIContainer object creation.
+ *
+ * @package App\Helpers
+ */
 class Container
 {
     /**
+     * Hold the class instance
+     *
      * @var null | DIContainer
      */
     private static $instance = null;

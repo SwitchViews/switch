@@ -11,16 +11,19 @@ use DI\NotFoundException;
 class Arr
 {
     /**
+     * this method instantiate the registered service from the container
+     * calls the appropriate method
+     *
      * @method static ArrayManager isArray(array|string|object|null $value)
-     * @param $method
-     * @param $arguments
+     * @param string $methodName
+     * @param array $arguments
      * @return mixed
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public static function __callStatic($method, $arguments)
+    public static function __callStatic(string $methodName, array $arguments)
     {
         return Container::getInstance()->get(ArrayManager::class)
-            ->$method($arguments);
+            ->$methodName(...$arguments);
     }
 }

@@ -2,18 +2,24 @@
 
 namespace App\Helpers\Services;
 
+/**
+ * Class that holds the Business logic
+ * Class ArrayManager
+ *
+ * @package App\Helpers\Services
+ */
 class ArrayManager
 {
     /**
-     * Returns TRUE if var is an array, FALSE otherwise.
-     * @param array $value
+     * isArray method determines whether the passed value is an Array
+     * can accepts any data type
+     * Returns TRUE if $value is an array, FALSE otherwise.
+     *
+     * @param mixed $value
      * @return bool
      */
-    public function isArray(array $value): bool
+    public function isArray($value): bool
     {
-        if (count($value) === 0) {
-            return false;
-        }
-        return is_array($value[0]);
+        return is_array($value);
     }
 }
