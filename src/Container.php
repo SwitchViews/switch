@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Helpers;
+namespace SwitchViews;
 
 use DI\Container as DIContainer;
 
@@ -9,7 +9,7 @@ use DI\Container as DIContainer;
  * Singleton class
  * Class Container is responsible for DIContainer object creation.
  *
- * @package App\Helpers
+ * @package SwitchViews
  */
 class Container
 {

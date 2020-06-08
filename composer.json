@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\Helpers\\": "src"
+            "SwitchViews\\": "src/"
         }
     },
     "autoload-dev": {
@@ -30,7 +30,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "tests": "pest",
-        "phpunit": "phpunit"
+        "pests": "pest",
+        "tests": "phpunit"
     }
 }
