@@ -3,7 +3,7 @@
 namespace App\Helpers\Services;
 
 /**
- * Class that holds the Business logic
+ * Class that holds Array Helper methods.
  * Class ArrayManager
  *
  * @package App\Helpers\Services

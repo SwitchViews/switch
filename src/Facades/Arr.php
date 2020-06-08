@@ -8,10 +8,15 @@ use App\Helpers\Services\ArrayManager;
 use DI\DependencyException;
 use DI\NotFoundException;
 
+/**
+ * static interface to an ArrayManager class
+ * Class Arr
+ * @package App\Helpers\Facades
+ */
 class Arr
 {
     /**
-     * this method instantiate the registered service from the container
+     * this method provides access to an object from the container
      * calls the appropriate method
      *
      * @method static ArrayManager isArray(array|string|object|null $value)
