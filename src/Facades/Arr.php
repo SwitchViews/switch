@@ -22,7 +22,7 @@ class Arr
      * @method static ArrayManager isArray(array|string|object|null $value)
      * @param string $methodName
      * @param array $arguments
-     * @return mixed
+     * @return array|string|object|int|float| bool| null
      * @throws DependencyException
      * @throws NotFoundException
      */
