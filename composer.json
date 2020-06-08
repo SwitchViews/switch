@@ -9,7 +9,8 @@
     "homepage": "https://github.com/SwitchViews/switch",
     "license": "MIT",
     "require": {
-        "php": ">=7.3"
+        "php": ">=7.3",
+        "php-di/php-di": "^6.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
