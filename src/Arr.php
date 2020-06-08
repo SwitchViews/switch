@@ -4,8 +4,8 @@ namespace App\Helpers;
 
 class Arr
 {
-    public static function isArray()
+    public static function isArray(): bool
     {
-        echo "Yes, this is an array!!";
+        return true;
     }
 }

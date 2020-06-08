@@ -1,5 +1,8 @@
 <?php
+use App\Helpers\Arr;
 
-  it('has home', function () {
-    // ..
-  });
+it('isArray function should return Array', function () {
+  $result = Arr::isArray();
+
+  assertEquals(true, $result);
+});
