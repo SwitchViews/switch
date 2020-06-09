@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Helpers\Services;
+namespace SwitchViews\Services;
 
 /**
  * Class that holds Array Helper methods.
  * Class ArrayManager
  *
- * @package App\Helpers\Services
+ * @package SwitchViews\Services
  */
 class ArrayManager
 {

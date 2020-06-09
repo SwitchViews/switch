@@ -6,6 +6,10 @@
 
 [🚂 Trello Dashboard](https://trello.com/b/nNx0oXjw/switch)
 
+## ⚡PestPHP Tutorials
+
+[🚂 PestPHP Tutorial](https://www.youtube.com/watch?v=tw8ZnU84XKw&list=PLe30vg_FG4OQi65Ee7hio0knUJrSEIY37)
+
 ## ⚡Follow rules while creating a PR
 
 ### ✳Prefix your branch with the type of work that you are committing:

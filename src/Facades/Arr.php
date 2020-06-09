@@ -1,17 +1,17 @@
 <?php
 
 
-namespace App\Helpers\Facades;
+namespace SwitchViews\Facades;
 
-use App\Helpers\Container;
-use App\Helpers\Services\ArrayManager;
+use SwitchViews\Container;
+use SwitchViews\Services\ArrayManager;
 use DI\DependencyException;
 use DI\NotFoundException;
 
 /**
  * static interface to an ArrayManager class
  * Class Arr
- * @package App\Helpers\Facades
+ * @package SwitchViews\Facades
  */
 class Arr
 {
