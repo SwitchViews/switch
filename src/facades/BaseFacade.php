@@ -43,7 +43,7 @@ class BaseFacade
                 return $service->$methodName(...$arguments);
                 break;
             default:
-                throw new InvalidArgumentException(sprintf("%s service is not an instance of ArrInterface", get_class($service)));
+                throw new InvalidArgumentException(sprintf("%s service is not an instance of ArrayInterface/StringInterface", get_class($service)));
         }
     }
 }
