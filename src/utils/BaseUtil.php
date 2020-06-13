@@ -1,0 +1,20 @@
+<?php
+
+
+namespace SwitchViews\utils;
+
+
+class BaseUtil
+{
+    /**
+     * @param string $className
+     * @param string $methodName
+     * @return bool
+     */
+    public static function exists(string $className, string $methodName): bool
+    {
+        $list = array_flip(get_class_methods($className));
+
+        return isset($list[$methodName]);
+    }
+}
