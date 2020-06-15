@@ -1,16 +1,16 @@
 <?php
 
 
-namespace SwitchViews\facades;
+namespace SwitchViews\Facades;
 
 
 use DI\DependencyException;
 use DI\NotFoundException;
 use InvalidArgumentException;
 use SwitchViews\Container;
-use SwitchViews\services\ArrayInterface;
-use SwitchViews\services\StringInterface;
-use SwitchViews\utils\BaseUtil;
+use SwitchViews\Services\ArrayInterface;
+use SwitchViews\Services\StringInterface;
+use SwitchViews\Utils\BaseUtil;
 
 class BaseFacade
 {
@@ -38,12 +38,10 @@ class BaseFacade
             throw new InvalidArgumentException("requested {$methodName} method is not available");
         }
 
-        switch ($service) {
-            case $service instanceof ArrayInterface || $service instanceof StringInterface:
-                return $service->$methodName(...$arguments);
-                break;
-            default:
-                throw new InvalidArgumentException(sprintf("%s service is not an instance of ArrayInterface/StringInterface", get_class($service)));
+        if ($service instanceof ArrayInterface || $service instanceof StringInterface) {
+            return $service->$methodName(...$arguments);
         }
+
+        throw new InvalidArgumentException(sprintf("%s service is not an instance of ArrayInterface/StringInterface", get_class($service)));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace SwitchViews\services;
+namespace SwitchViews\Services;
 
 /**
  * Class that holds Array Helper methods.

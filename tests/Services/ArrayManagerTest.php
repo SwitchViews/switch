@@ -1,6 +1,6 @@
 <?php
 
-use SwitchViews\facades\Arr;
+use SwitchViews\Facades\Arr;
 
 test('isArray should return true on passing empty array', function () {
     $result = Arr::isArray([]);

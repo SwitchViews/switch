@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SwitchViews\services;
+namespace SwitchViews\Services;
 
 
 class StringManager implements StringInterface

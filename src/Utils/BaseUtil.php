@@ -1,9 +1,13 @@
 <?php
 
 
-namespace SwitchViews\utils;
+namespace SwitchViews\Utils;
 
-
+/**
+ * this holds the util methods.
+ * Class BaseUtil
+ * @package SwitchViews\utils
+ */
 class BaseUtil
 {
     /**

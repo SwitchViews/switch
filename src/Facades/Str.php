@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SwitchViews\facades;
+namespace SwitchViews\Facades;
 
-use SwitchViews\services\ArrayManager;
-use SwitchViews\services\StringManager;
+use SwitchViews\Services\ArrayManager;
+use SwitchViews\Services\StringManager;
 
 /**
  * static interface to an ArrayManager class

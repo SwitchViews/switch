@@ -4,7 +4,7 @@
 namespace Services;
 
 use stdClass;
-use SwitchViews\facades\Str;
+use SwitchViews\Facades\Str;
 
 test('isString should return false on passing empty array', function () {
     $result = Str::isString([]);

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace SwitchViews\facades;
+namespace SwitchViews\Facades;
 
-use SwitchViews\services\ArrayManager;
+use SwitchViews\Services\ArrayManager;
 
 /**
  * static interface to an ArrayManager class
