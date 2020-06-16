@@ -8,7 +8,7 @@ namespace SwitchViews\Services;
  *
  * @package SwitchViews\Services
  */
-class ArrayManager
+class ArrayManager implements ArrayInterface
 {
     /**
      * isArray method determines whether the passed value is an Array
@@ -21,5 +21,20 @@ class ArrayManager
     public function isArray($value): bool
     {
         return is_array($value);
+    }
+
+    public function add(array $arr, ...$values): array
+    {
+        // TODO: Implement add() method.
+    }
+
+    public function get(array $arr, string $key)
+    {
+        // TODO: Implement get() method.
+    }
+
+    public function hasKey(array $arr, string $key): bool
+    {
+        // TODO: Implement hasKey() method.
     }
 }
