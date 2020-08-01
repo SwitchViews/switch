@@ -128,15 +128,6 @@ interface ArrayInterface
     public function shuffle(array &$arr): void;
 
     /**
-     * method Removes the element  from an array at the specified position
-     *
-     * @param array $arr
-     * @param int $position
-     * @return void
-     */
-    public function pop(array &$arr, int $position): void;
-
-    /**
      * method returns and removes a key value pair from an array
      * default value may be passed as the third argument to the method
      * This value will be returned if the key doesn't exist
