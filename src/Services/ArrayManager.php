@@ -2,6 +2,9 @@
 
 namespace SwitchViews\Services;
 
+use Exception;
+use SwitchViews\Utils\BaseUtil;
+
 /**
  * Class that holds Array Helper methods.
  * Class ArrayManager
@@ -24,15 +27,24 @@ class ArrayManager implements ArrayInterface
     }
 
     /**
-     * @inheritDoc
+     * method returns true if the given array is an associative array and false if not
+     *
+     * @param array $arr
+     * @return bool
      */
     public function isAssoc(array $arr): bool
     {
-        // TODO: Implement isAssoc() method.
+        if (empty($arr)) {
+            return false;
+        }
+        return array_keys($arr) != range(0, count($arr) - 1);
     }
 
     /**
-     * @inheritDoc
+     * method flattens the multi dimensional array into a single dimensional array
+     *
+     * @param array $arr
+     * @return void
      */
     public function flatten(array &$arr): void
     {
@@ -40,55 +52,96 @@ class ArrayManager implements ArrayInterface
     }
 
     /**
-     * @inheritDoc
+     * method inserts the specified value at the specified position
+     *
+     * @param array $arr
+     * @param $position
+     * @param $value
+     * @return void
      */
-    public function insert(array &$arr, int $position, $value): void
+    public function insert(array &$arr, $position, $value): void
     {
-        // TODO: Implement insert() method.
+        if (!isset($arr[$position])) {
+            $arr[$position] = $value;
+            return;
+        }
+        if ($this->isAssoc($arr)) {
+            $arr += [$position => $value];
+            return;
+        }
+
+        for ($i = $position; $i < count($arr); $i++) {
+            $nextVal = $arr[$i];
+            $arr[$i] = $value;
+            $value = $nextVal;
+        }
+        $arr[] = $value;
     }
 
     /**
-     * @inheritDoc
+     * method returns range of items in an array by using the "slicing :" operator
+     *
+     * @param array $arr
+     * @param string $range // "1:", "1:4"
+     * @return array
      */
     public function slice(array $arr, string $range): array
     {
-        // TODO: Implement slice() method.
+        $split = explode(":", $range);
+        $offset = $split[0];
+        $length = trim($split[1]) === "" ? count($arr) - $offset : $split[1];
+        return array_slice($arr, $offset, $length);
     }
 
     /**
-     * @inheritDoc
+     * method will push elements onto the end of an array
+     *
+     * @param array $arr
+     * @param mixed ...$elements
+     * @return void
      */
-    public function append(array $arr, ...$elements): array
+    public function append(array &$arr, ...$elements): void
     {
-        // TODO: Implement append() method.
+        $arr = array_merge($arr, $elements);
     }
 
     /**
-     * @inheritDoc
+     * method will push elements onto the beginning of an array
+     *
+     * @param array $arr
+     * @param mixed ...$elements
+     * @return void
      */
-    public function prepend(array $arr, ...$elements): array
+    public function prepend(array &$arr, ...$elements): void
     {
-        // TODO: Implement prepend() method.
+        $arr = array_merge($elements, $arr);
     }
 
     /**
-     * @inheritDoc
-     */
-    public function divide(array $arr): array
-    {
-        // TODO: Implement divide() method.
-    }
-
-    /**
-     * @inheritDoc
+     * method returns only the specified key/value pairs from the given array
+     *
+     * @param array $array
+     * @param mixed ...$requiredKeys
+     * @return array
      */
     public function only(array $array, ...$requiredKeys): array
     {
-        // TODO: Implement only() method.
+        $resultArray = [];
+        foreach ($requiredKeys as $key) {
+            if (isset($array[$key])) {
+                $resultArray[$key] = $array[$key];
+            }
+        }
+        return $resultArray;
     }
 
     /**
-     * @inheritDoc
+     * method returns bool whether any item in given set exists in an array using "dot" notation
+     *
+     * @param array $arr
+     * @param mixed $keys
+     * @param bool $strictCheck
+     * @return bool
      */
     public function has(array $arr, $keys, $strictCheck = true): bool
     {
@@ -96,23 +149,27 @@ class ArrayManager implements ArrayInterface
     }
 
     /**
-     * @inheritDoc
+     * method removes the given key/value pair from an array
+     *
+     * @param array $arr
+     * @param mixed ...$keys
+     * @return void
      */
-    public function hasKey(array $arr, string $key): bool
+    public function remove(array &$arr, ...$keys): void
     {
-        // TODO: Implement hasKey() method.
+        foreach ($keys as $key) {
+            if (isset($arr[$key])) {
+                unset($arr[$key]);
+            }
+        }
     }
 
     /**
-     * @inheritDoc
-     */
-    public function remove(array $arr, ...$keys): array
-    {
-        // TODO: Implement remove() method.
-    }
-
-    /**
-     * @inheritDoc
+     * method returns the match elements of an array using a callback function
+     *
+     * @param array $arr
+     * @param callable $callback
+     * @return array
      */
     public function match(array $arr, callable $callback): array
     {
@@ -120,23 +177,22 @@ class ArrayManager implements ArrayInterface
     }
 
     /**
-     * @inheritDoc
+     * method randomly shuffles the items in the array
+     *
+     * @param array $arr
+     * @return void
      */
-    public function sort(array $arr, callable $callable = null): array
+    public function shuffle(array &$arr): void
     {
-        // TODO: Implement sort() method.
+        shuffle($arr);
     }
 
     /**
-     * @inheritDoc
-     */
-    public function shuffle(array $arr): array
-    {
-        // TODO: Implement shuffle() method.
-    }
-
-    /**
-     * @inheritDoc
+     * method Removes the element  from an array at the specified position
+     *
+     * @param array $arr
+     * @param int $position
+     * @return void
      */
     public function pop(array &$arr, int $position): void
     {
@@ -144,15 +200,42 @@ class ArrayManager implements ArrayInterface
     }
 
     /**
-     * @inheritDoc
+     * method returns and removes a key value pair from an array
+     * default value may be passed as the third argument to the method
+     * This value will be returned if the key doesn't exist
+     *
+     * @param array $arr
+     * @param int|string $key
+     * @param int|string $default
+     * @return mixed
+     * @throws Exception
      */
-    public function pull(array $arr, $key, $default)
+    public function pull(array &$arr, $key, $default)
     {
-        // TODO: Implement pull() method.
+        $keys = BaseUtil::convertDotNotationIntoAnArray($key);
+        if (count($keys)) {
+            $value = $arr[$keys[0]];
+            unset($arr[$keys[0]], $keys[0]);
+            foreach ($keys as $key) {
+                if (isset($value[$key])) {
+                    $value = $value[$key];
+                } else {
+                    return $default;
+                }
+            }
+        } else {
+            return $default;
+        }
+        return [$key => $value];
     }
 
+
     /**
-     * @inheritDoc
+     * method returns a random value/values from an array
+     *
+     * @param array $arr
+     * @param int $itemsCount
+     * @return mixed
      */
     public function random(array $arr, int $itemsCount)
     {
@@ -160,26 +243,36 @@ class ArrayManager implements ArrayInterface
     }
 
     /**
-     * @inheritDoc
+     * method retrieves all of the values for a given key from an array using "dot" notation
+     *
+     * @param array $arr
+     * @param mixed ...$keys
+     * @return array
      */
-    public function pickN(array $arr, ...$keys): array
+    public function pick(array &$arr, ...$keys): void
     {
-        // TODO: Implement pickN() method.
+        // TODO: Implement pick() method.
     }
 
     /**
-     * @inheritDoc
+     * method returns an array that containing the keys of a given array
+     *
+     * @param array $arr
+     * @return array
      */
-    public function forgetN(array $arr, string $str): array
+    public function keys(array $arr): array
     {
-        // TODO: Implement forgetN() method.
+        return array_keys($arr);
     }
 
     /**
-     * @inheritDoc
+     * method returns an array that containing the values of a given array
+     *
+     * @param array $arr
+     * @return array
      */
-    public function getN(array $arr, string $notation, $defaultValue = null)
+    public function values(array $arr): array
     {
-        // TODO: Implement getN() method.
+        return array_values($arr);
     }
 }

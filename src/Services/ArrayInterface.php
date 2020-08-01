@@ -53,27 +53,34 @@ interface ArrayInterface
      *
      * @param array $arr
      * @param mixed ...$elements
-     * @return array
+     * @return void
      */
-    public function append(array $arr, ...$elements): array;
+    public function append(array &$arr, ...$elements): void;
 
     /**
      * method will push elements onto the beginning of an array
      *
      * @param array $arr
      * @param mixed ...$elements
-     * @return array
+     * @return void
      */
-    public function prepend(array $arr, ...$elements): array;
+    public function prepend(array &$arr, ...$elements): void;
 
     /**
-     * method returns two arrays, one containing the keys, and the other containing the values of the given array
+     * method returns an array that containing the keys of a given array
      *
      * @param array $arr
      * @return array
      */
-    public function divide(array $arr): array;
+    public function keys(array $arr): array;
 
+    /**
+     * method returns an array that containing the values of a given array
+     *
+     * @param array $arr
+     * @return array
+     */
+    public function values(array $arr): array;
 
     /**
      * method returns only the specified key/value pairs from the given array
@@ -95,22 +102,13 @@ interface ArrayInterface
     public function has(array $arr, $keys, $strictCheck = true): bool;
 
     /**
-     * method returns bool when the given key exists in an array
-     *
-     * @param array $arr
-     * @param string $key
-     * @return bool
-     */
-    public function hasKey(array $arr, string $key): bool;
-
-    /**
      * method removes the given key/value pair from an array
      *
      * @param array $arr
      * @param mixed ...$keys
-     * @return array
+     * @return void
      */
-    public function remove(array $arr, ...$keys): array;
+    public function remove(array &$arr, ...$keys): void;
 
     /**
      * method returns the match elements of an array using a callback function
@@ -121,23 +119,13 @@ interface ArrayInterface
      */
     public function match(array $arr, callable $callback): array;
 
-
-    /**
-     * method sorts an array by its values and it also sort by the given closure
-     *
-     * @param array $arr
-     * @param callable|null $callable
-     * @return array
-     */
-    public function sort(array $arr, callable $callable = null): array; // TODO: not needed.
-
     /**
      * method randomly shuffles the items in the array
      *
      * @param array $arr
-     * @return array
+     * @return void
      */
-    public function shuffle(array $arr): array;   //TODO: not needed.
+    public function shuffle(array &$arr): void;
 
     /**
      * method Removes the element  from an array at the specified position
@@ -158,7 +146,7 @@ interface ArrayInterface
      * @param int|string $default
      * @return mixed
      */
-    public function pull(array $arr, $key, $default);
+    public function pull(array &$arr, $key, $default);
 
     /**
      * method returns a random value/values from an array
@@ -176,24 +164,5 @@ interface ArrayInterface
      * @param mixed ...$keys
      * @return array
      */
-    public function pickN(array $arr, ...$keys): array;
-
-    /**
-     * method removes a given key/value pair from a nested array using "dot" notation
-     *
-     * @param array $arr
-     * @param string $str
-     * @return array
-     */
-    public function forgetN(array $arr, string $str): array;
-
-    /**
-     * method retrieves a value from a deeply nested array using "dot" notation
-     *
-     * @param array $arr
-     * @param string $notation
-     * @param null|mixed $defaultValue
-     * @return null|mixed
-     */
-    public function getN(array $arr, string $notation, $defaultValue = null);
+    public function pick(array &$arr, ...$keys): void;
 }
