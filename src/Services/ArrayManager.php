@@ -227,7 +227,15 @@ class ArrayManager implements ArrayInterface
      */
     public function random(array $arr, int $itemsCount)
     {
-        // TODO: Implement random() method.
+        $items = [];
+        for ($i = 0; $i < $itemsCount; $i++) {
+            $items[] = $arr[rand(0, count($arr)) - 1];
+        }
+
+        if (count($items) == 1) {
+            return $items[0];
+        }
+        return $items;
     }
 
     /**
