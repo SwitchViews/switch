@@ -21,4 +21,13 @@ class BaseUtil
 
         return isset($list[$methodName]);
     }
+
+    /**
+     * @param string $key
+     * @return array
+     */
+    public static function convertDotNotationIntoAnArray(string $key): array
+    {
+        return preg_split('#\.#', $key);
+    }
 }
